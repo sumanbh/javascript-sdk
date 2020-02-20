@@ -27,7 +27,7 @@ module.exports = {
   isArray: require('lodash/isArray'),
   isEmpty: require('lodash/isEmpty'),
   isFinite: function(number) {
-    return _isFinite(number) && Math.abs(number) <= MAX_NUMBER_LIMIT;
+    return typeof number == 'number' && Math.abs(number) <= MAX_NUMBER_LIMIT;
   },
   keyBy: require('lodash/keyBy'),
   filter: require('lodash/filter'),
