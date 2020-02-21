@@ -31,7 +31,24 @@ module.exports = {
   },
   keyBy: require('lodash/keyBy'),
   filter: require('lodash/filter'),
-  forEach: require('lodash/forEach'),
+  forEach: function(collection, iteratee) {
+    // checking iteratee is a function otherwise return identity
+    iteratee = typeof iteratee == 'function' ? iteratee : function(value, index, collection) {
+      return value;
+    };
+    if (Array.isArray(collection)) {
+      var index = -1, length = collection == null ? 0 : collection.length;
+
+      while (++index < length) {
+        if (iteratee(collection[index], index, collection) === false) {
+          break;
+        }
+      }
+      return collection;
+    } else {
+
+    }
+  },
   forOwn: require('lodash/forOwn'),
   map: require('lodash/map'),
   uuid: function() {
